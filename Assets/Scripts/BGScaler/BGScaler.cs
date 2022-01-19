@@ -5,6 +5,7 @@ using UnityEngine;
 public class BGScaler : MonoBehaviour
 {
     // Start is called before the first frame update
+    public 
     void Start()
     {
         SpriteRenderer sr = GetComponent<SpriteRenderer>();
@@ -13,6 +14,8 @@ public class BGScaler : MonoBehaviour
         float height = sr.bounds.size.y;
         float width = sr.bounds.size.x;
         
+
+        // Formulate to get the size of screen
         float worldHeight = Camera.main.orthographicSize * 2f;
         float worldWidth = worldHeight * Screen.width/Screen.height;
         

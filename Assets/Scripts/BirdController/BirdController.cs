@@ -20,8 +20,8 @@ public class BirdController : MonoBehaviour
     private bool didFlap;
 
     private GameObject spawner;
-
     public float flag = 0;
+    public int score = 0;
     // Start is called before the first frame update
     void Awake() // dung de khoi tao
     {
@@ -95,6 +95,11 @@ public class BirdController : MonoBehaviour
     {
         if (target.tag == "PipeHolder")
         {
+            score++;
+            if (GamePlayController.instance != null)
+            {
+                GamePlayController.instance.SetScore(score);
+            }
             audioSource.PlayOneShot(pingClip);
         }
     }
@@ -105,10 +110,18 @@ public class BirdController : MonoBehaviour
         if (target.gameObject.tag == "Pipe" || target.gameObject.tag == "Ground")
         {
             flag = 1;
-            // destroy spawner to not spawn pipe after bird died
-            Destroy(spawner);
-            audioSource.PlayOneShot(diedClip);
-            anim.SetTrigger("Died"); // because we set Trigger Condition at Animator
+            if (isAlive)
+            {
+                isAlive = false;
+                // destroy spawner to not spawn pipe after bird died
+                Destroy(spawner);
+                audioSource.PlayOneShot(diedClip);
+                anim.SetTrigger("Died"); // because we set Trigger Condition at Animator
+            }
+            if (GamePlayController.instance != null)
+            {
+                GamePlayController.instance.BirdDiedShowPanel(score);
+            }
         }
     }
 }

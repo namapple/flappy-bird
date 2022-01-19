@@ -9,18 +9,18 @@ public class PipeSpawner : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        StartCoroutine(Spawner());   
+        StartCoroutine(Spawner());
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     IEnumerator Spawner()
     {
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(1.5f);
         // -- Make pipe spawning randomly by y axis --
         //current position of pipeHolder
         Vector3 temp = pipeHolder.transform.position;
